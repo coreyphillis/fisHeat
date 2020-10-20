@@ -61,6 +61,18 @@ head(df)
 #> 6 1.665487     23.45073    13.21225   30  4.338503 0.08683152
 ```
 
-    #> Loading required package: viridisLite
+``` r
+
+library(ggplot2)
+library(viridis)
+#> Loading required package: viridisLite
+
+ggplot(df, aes(prey_density, ggd)) + 
+  geom_point(aes(size = mass0, color = temperature)) + 
+  scale_x_log10(limits = c(0.01, 60)) + ylim(c(0,0.15)) +
+  scale_color_viridis(aesthetics = c('color', 'fill'), option = 'viridis', alpha = 0.6, limits = c(10,20)) + 
+  xlab('Prey Density') + 
+  ylab('grams per gram per day')
+```
 
 <img src="man/figures/README-growth-1.png" width="100%" />

@@ -63,7 +63,7 @@ head(df)
 ```
 
 
-```{r growth, echo = FALSE}
+```{r growth}
 
 library(ggplot2)
 library(viridis)
