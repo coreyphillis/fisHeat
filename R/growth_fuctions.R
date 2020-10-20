@@ -122,8 +122,18 @@ typeII <- function(C_max = max_consumption_rate,
 
 
 
-# roll up for new mass function -------------------------------------------
-
+#' Calculate new mass
+#'
+#' Calculate the new mass of a fish from its old mass after a specficed number of days, prey density, and temperature
+#'
+#' @param df a dataframe with the columns "temperature" and "prey_density"
+#' @param old_mass initial mass of fish in grams
+#' @param day day on which mass should be calculated
+#'
+#' @return Vector
+#' @export
+#'
+#' @examples
 newmass_fxn <- function(df, old_mass, day) {
 
   # consumption rate given available prey

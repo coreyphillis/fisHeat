@@ -1,0 +1,81 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# fisHeat
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of fisHeat is to predict the growth of juvenile salmon under different temperature and prey availability scenarios. 
+
+## Installation
+
+<!--
+You can install the released version of fisHeat from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("fisHeat")
+```
+-->
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("coreyphillis/fisHeat")
+```
+## Example
+
+Predict the new mass after 30 days for fish of given starting size and different prey density and temperature. 
+
+```{r example}
+library(fisHeat)
+
+set.seed(12345)
+
+df <- data.frame(mass0 = runif(20, 1, 5),
+                 prey_density = runif(20, .1, 60),
+                 temperature = runif(20, 10, 20),
+                 days = rep(30,10))
+
+
+df$newmass <- newmass_fxn(df, df$mass0, df$days)
+
+# mass specific growth (grams per gram per day)
+df$ggd <- df$newmass/df$mass0/df$days
+
+```
+
+
+```{r df}
+head(df)
+```
+
+
+```{r growth, echo = FALSE}
+
+library(ggplot2)
+library(viridis)
+
+ggplot(df, aes(prey_density, ggd)) + 
+  geom_point(aes(size = mass0, color = temperature)) + 
+  scale_x_log10(limits = c(0.01, 60)) + ylim(c(0,0.15)) +
+  scale_color_viridis(aesthetics = c('color', 'fill'), option = 'viridis', alpha = 0.6, limits = c(10,20)) + 
+  xlab('Prey Density') + 
+  ylab('grams per gram per day')
+
+
+```
+
+
