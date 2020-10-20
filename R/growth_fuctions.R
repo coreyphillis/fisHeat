@@ -106,15 +106,25 @@ R_fxn <- function(foraging_time = FORAGING_TIME, # in minutes
 }
 
 
-# Type II functional response from Haskell et al 2017 using sub-yearling Chinook and Daphnia
+#
+#' Type II functional feeding response
+#'
+#' Type II functional response from Haskell et al 2017 using sub-yearling Chinook and Daphnia
+#'
+#' @param C_max max consumption rate (Beta 0)
+#' @param prey_density Prey density (individuals per liter)
+#' @param P_Chalf prey density at which consumption reaches half of its maximum (Beta 1)
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 typeII <- function(C_max = max_consumption_rate,
                    prey_density,
                    P_Chalf = prey_density_at_half_max_consumption,
                    ...){
-  # consumption_rate = Consumption rate of the predator
-  # prey_density = Prey density
-  # C_max = max consumption rate (Beta 0)
-  # P_Chalf = prey density at which consumption reaches half of its maximum (Beta 1)
+
   consumption_rate = (C_max * prey_density)/(P_Chalf + prey_density)
   return(consumption_rate)
 
