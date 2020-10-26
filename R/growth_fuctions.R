@@ -204,6 +204,7 @@ W2L_fxn <- function(mass,
 
 
 
+
 #' Create fish population
 #'
 #' Function to create fish population with specified abundance and
@@ -222,6 +223,7 @@ W2L_fxn <- function(mass,
 #' @export
 #'
 #' @examples
+
 create_fish_pop <- function(nfish = 5000,
                             init_fl = list(
                               'min' =  28,
