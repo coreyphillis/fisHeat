@@ -106,7 +106,6 @@ R_fxn <- function(foraging_time = FORAGING_TIME, # in minutes
 }
 
 
-#
 #' Type II functional feeding response
 #'
 #' Type II functional response from Haskell et al 2017 using sub-yearling Chinook and Daphnia
@@ -205,9 +204,24 @@ W2L_fxn <- function(mass,
 
 
 
-
-# function to create fish population --------------------------------------
-
+#' Create fish population
+#'
+#' Function to create fish population with specified abundance and
+#' fork length distribution.
+#'
+#' @param nfish number of fish in the population
+#' @param init_fl Named list ('min', 'max', 'mode') of initial fork lengths when
+#'   distribution of fish for fl_distribution = 'triangle' (default)
+#' @param fl_distribution 'triangle' uses rtriangle() distribution.
+#'   'discrete' creates three discrete size classes ('small', 'medium', 'large')
+#'   according to psizeclass
+#' @param psizeclass proportion in each size class when fl_distribution = 'discrete'
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 create_fish_pop <- function(nfish = 5000,
                             init_fl = list(
                               'min' =  28,

@@ -16,9 +16,10 @@ knitr::opts_chunk$set(
 # fisHeat
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of fisHeat is to predict the growth of juvenile salmon under different temperature and prey availability scenarios. 
+The goal of fisHeat is to predict the growth of juvenile salmon under different temperature and prey availability scenarios.
 
 ## Installation
 
@@ -29,15 +30,17 @@ You can install the released version of fisHeat from [CRAN](https://CRAN.R-proje
 install.packages("fisHeat")
 ```
 -->
+
 You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("coreyphillis/fisHeat")
 ```
+
 ## Example
 
-Predict the new mass after 30 days for fish of given starting size and different prey density and temperature. 
+Predict the new mass after 30 days for fish of given starting size and different prey density and temperature.
 
 ```{r example}
 library(fisHeat)
@@ -57,11 +60,9 @@ df$ggd <- df$newmass/df$mass0/df$days
 
 ```
 
-
 ```{r df}
 head(df)
 ```
-
 
 ```{r growth}
 
@@ -77,5 +78,3 @@ ggplot(df, aes(prey_density, ggd)) +
 
 
 ```
-
-

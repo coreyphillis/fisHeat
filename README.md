@@ -4,7 +4,6 @@
 # fisHeat
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 The goal of fisHeat is to predict the growth of juvenile salmon under
@@ -62,7 +61,6 @@ head(df)
 ```
 
 ``` r
-
 library(ggplot2)
 library(viridis)
 #> Loading required package: viridisLite
