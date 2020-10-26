@@ -106,7 +106,6 @@ R_fxn <- function(foraging_time = FORAGING_TIME, # in minutes
 }
 
 
-#
 #' Type II functional feeding response
 #'
 #' Type II functional response from Haskell et al 2017 using sub-yearling Chinook and Daphnia
@@ -205,9 +204,24 @@ W2L_fxn <- function(mass,
 
 
 
-
-# function to create fish population --------------------------------------
-
+#' Create fish population
+#'
+#' Function to create fish population with specified abundance and
+#' fork length distribution.
+#'
+#' @param nfish number of fish in the population
+#' @param init_fl Named list ('min', 'max', 'mode') of initial fork lengths when
+#'   distribution of fish for fl_distribution = 'triangle' (default)
+#' @param fl_distribution 'triangle' uses rtriangle() distribution.
+#'   'discrete' creates three discrete size classes ('small', 'medium', 'large')
+#'   according to psizeclass
+#' @param psizeclass proportion in each size class when fl_distribution = 'discrete'
+#' @param ...
+#'
+#' @return list
+#' @export
+#'
+#' @examples
 create_fish_pop <- function(nfish = 5000,
                             init_fl = list(
                               'min' =  28,
@@ -235,10 +249,10 @@ create_fish_pop <- function(nfish = 5000,
       init_size = L2W_fxn(triangle::rtriangle(n = nfish, a = init_fl$min, b = init_fl$max, c = init_fl$mode)),
       size_class = NA)
 
-    size_dist$size_class <- ifelse(between(size_dist$init_size, small_rng[1], small_rng[2]), 'small',
-                                   ifelse(between(size_dist$init_size, medium_rng[1], medium_rng[2]), 'medium',
-                                          ifelse(between(size_dist$init_size, large_rng[1], large_rng[2]), 'large',
-                                                 ifelse(between(size_dist$init_size, vlarge_rng[1], vlarge_rng[2]), 'very large', NA))))
+    size_dist$size_class <- ifelse(dplyr::between(size_dist$init_size, small_rng[1], small_rng[2]), 'small',
+                                   ifelse(dplyr::between(size_dist$init_size, medium_rng[1], medium_rng[2]), 'medium',
+                                          ifelse(dplyr::between(size_dist$init_size, large_rng[1], large_rng[2]), 'large',
+                                                 ifelse(dplyr::between(size_dist$init_size, vlarge_rng[1], vlarge_rng[2]), 'very large', NA))))
 
     size_dist$size_class <- factor(size_dist$size_class, levels = c('small', 'medium', 'large', 'very large'))
 
@@ -258,7 +272,7 @@ create_fish_pop <- function(nfish = 5000,
                                           mean(size_dist$init_size[size_dist$size_class == 'large'], na.rm = TRUE)),
                             psize = psize)
 
-    fish <- filter(size_dist, size_class != 'very large')
+    fish <- dplyr::filter(size_dist, size_class != 'very large')
 
   }
 
@@ -285,7 +299,7 @@ create_fish_pop <- function(nfish = 5000,
 
 
     # discrete and triangle distributions w/o very large size class, w/ number of rows equal to nfish to assign
-    fish <- filter(size_dist, size_class != 'very large') %>%
+    fish <- dplyr::filter(size_dist, size_class != 'very large') %>%
       sample_n(size = nfish, replace = TRUE, weight = psizeclass)
 
     fish_init <- data.frame(size_class = c('small', 'medium', 'large'),
@@ -485,15 +499,15 @@ grow_sum_fish <- function(filled_reach_list, ...) {
 
   full_df <- as.data.frame(filled_reach_list$fish_array[,, 'init_size'])
   occupied_cells <- full_df %>%
-    filter(day == 0, !is.na(fish1)) %>%
+    dplyr::filter(day == 0, !is.na(fish1)) %>%
     pull(reach_cell)
 
-  df <- filter(full_df, reach_cell %in% occupied_cells)
+  df <- dplyr::filter(full_df, reach_cell %in% occupied_cells)
 
   jdays <- unique(df$day)
 
   # get column names of fish_id
-  fish_id <- select(df, starts_with('fish')) %>% colnames()
+  fish_id <- dplyr::select(df, starts_with('fish')) %>% colnames()
 
   for(i in 1:max(df$reach_cell)){
     for(j in jdays[-1]){  # over j days, skipping day 0 (i.e. initial mass)
@@ -541,7 +555,7 @@ make_reach <- function(reach_in,
 # calculate number of cells that are subsidized ---------------------------
 
 reach_subsidized <- function(filled_reach_list) {
-  full_df <- as.data.frame(filled_reach_list$fish_array[,, 'territory']) %>% filter(day == 0) %>% filter(reach_width > 0)
+  full_df <- as.data.frame(filled_reach_list$fish_array[,, 'territory']) %>% dplyr::filter(day == 0) %>% dplyr::filter(reach_width > 0)
 
   n_cells <- max(full_df$reach_cell)
   bkgrd <- min(full_df$prey_density)
