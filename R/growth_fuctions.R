@@ -174,6 +174,16 @@ newmass_fxn <- function(df, old_mass, day) {
 
 # L:W regression functions ----------------------------------------------------------
 
+#' Convert fork length to mass
+#'
+#' @param fl
+#' @param a
+#' @param b
+#'
+#' @return
+#' @export
+#'
+#' @examples
 L2W_fxn <- function(fl,
                     a = 0.005,
                     b = 3.44) {
@@ -188,6 +198,16 @@ L2W_fxn <- function(fl,
   return(mass)
 }
 
+#' Convert mass to fork length
+#'
+#' @param mass
+#' @param a
+#' @param b
+#'
+#' @return
+#' @export
+#'
+#' @examples
 W2L_fxn <- function(mass,
                     a = 0.005,
                     b = 3.44) {
