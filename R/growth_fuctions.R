@@ -176,9 +176,9 @@ newmass_fxn <- function(df, old_mass, day) {
 
 #' Convert fork length to mass
 #'
-#' @param fl
-#' @param a
-#' @param b
+#' @param fl fork length to convert
+#' @param a coefficient a
+#' @param b coefficient b
 #'
 #' @return
 #' @export
@@ -200,9 +200,9 @@ L2W_fxn <- function(fl,
 
 #' Convert mass to fork length
 #'
-#' @param mass
-#' @param a
-#' @param b
+#' @param mass mass to convert
+#' @param a coefficient
+#' @param b coefficient
 #'
 #' @return
 #' @export

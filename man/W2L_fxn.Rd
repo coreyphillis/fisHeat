@@ -7,7 +7,11 @@
 W2L_fxn(mass, a = 0.005, b = 3.44)
 }
 \arguments{
-\item{b}{}
+\item{mass}{mass to convert}
+
+\item{a}{coefficient}
+
+\item{b}{coefficient}
 }
 \value{
 

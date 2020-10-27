@@ -7,7 +7,11 @@
 L2W_fxn(fl, a = 0.005, b = 3.44)
 }
 \arguments{
-\item{b}{}
+\item{fl}{fork length to convert}
+
+\item{a}{coefficient a}
+
+\item{b}{coefficient b}
 }
 \value{
 
