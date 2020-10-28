@@ -89,6 +89,26 @@ g_fxn <- function(R){
 }
 
 
+#' Ration function
+#'
+#' Calculate the ration available to a fish given a consumption rate,
+#'   foraging time, and prey dry mass. Available ration is relative to the
+#'   temperature- and mass-dependent ration that maximizes growth. When
+#'   ration >1 fish are satiated and food is not limiting to growth;
+#'   when ration <1 food is limiting.
+#'
+#'
+#' @param foraging_time time (in minutes) a fish forages. Default = 360
+#' @param consumption_rate calculated with typeII function
+#' @param dry_mass dry mass (in ___) of prey
+#' @param Temperature water temperature (in C)
+#' @param M0 initial fish mass (in grams)
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 R_fxn <- function(foraging_time = FORAGING_TIME, # in minutes
                   consumption_rate, # from TypeII
                   dry_mass = DRY_MASS,
@@ -108,7 +128,8 @@ R_fxn <- function(foraging_time = FORAGING_TIME, # in minutes
 
 #' Type II functional feeding response
 #'
-#' Type II functional response from Haskell et al 2017 using sub-yearling Chinook and Daphnia
+#' Calculate the consumption rate using the Type II functional response from
+#'   Haskell et al 2017 using sub-yearling Chinook and Daphnia.
 #'
 #' @param C_max max consumption rate (Beta 0)
 #' @param prey_density Prey density (individuals per liter)

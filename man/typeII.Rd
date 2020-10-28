@@ -24,5 +24,6 @@ typeII(
 
 }
 \description{
-Type II functional response from Haskell et al 2017 using sub-yearling Chinook and Daphnia
+Calculate the consumption rate using the Type II functional response from
+Haskell et al 2017 using sub-yearling Chinook and Daphnia.
 }
