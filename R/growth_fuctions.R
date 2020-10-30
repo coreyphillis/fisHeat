@@ -570,6 +570,21 @@ grow_sum_fish <- function(filled_reach_list, ...) {
 # Make reach from delt model output ---------------------------------------
 
 
+#' Make reach
+#'
+#' Assign temperature and prey density to cells in reach
+#'
+#' @param reach_in reach
+#' @param ag_zoop prey density (individuals per liter) in ag field water
+#' @param river_zoop prey density in river
+#' @param ag_temp water temperature of ag field water
+#' @param river_temp water temperature of river
+#' @param vdays day(s) on which mass will be calculated.
+#'
+#' @return
+#' @export
+#'
+#' @examples
 make_reach <- function(reach_in,
                        ag_zoop,
                        river_zoop,

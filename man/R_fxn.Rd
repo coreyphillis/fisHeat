@@ -33,5 +33,6 @@ R_fxn(
 Calculate the ration available to a fish given a consumption rate,
 foraging time, and prey dry mass. Available ration is relative to the
 temperature- and mass-dependent ration that maximizes growth. When
-rations >1 food is not limiting to growth; when ration <1 food is limiting.
+ration >1 fish are satiated and food is not limiting to growth;
+when ration <1 food is limiting.
 }
