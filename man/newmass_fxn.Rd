@@ -4,10 +4,12 @@
 \alias{newmass_fxn}
 \title{Calculate new mass}
 \usage{
-newmass_fxn(df, old_mass, day)
+newmass_fxn(prey_density, temperature, old_mass, day)
 }
 \arguments{
-\item{df}{a dataframe with the columns "temperature" and "prey_density"}
+\item{prey_density}{prey_density in individuals per liter}
+
+\item{temperature}{water temperature in degrees C}
 
 \item{old_mass}{initial mass of fish in grams}
 
